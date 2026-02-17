@@ -1,7 +1,10 @@
 import json
 from typing import Dict
 from openai import AzureOpenAI
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 class ModelB:
     """
@@ -14,9 +17,9 @@ class ModelB:
 
         try:
             self.client = AzureOpenAI(
-                api_key="9JEAg9qfuLiySXdILk1szsc76GQLg3lln5sxARmYbKIZOuoz5CzYJQQJ99CBACHYHv6XJ3w3AAAAACOGm61J",
-                api_version="2024-02-01",
-                azure_endpoint="https://ai-gautamrahul29058886ai866540254902.openai.azure.com/"
+                api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+                api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
+                azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
             )
         except Exception:
             print("⚠️ Azure OpenAI not available. ModelB disabled.")
